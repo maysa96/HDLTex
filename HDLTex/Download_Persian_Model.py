@@ -31,7 +31,7 @@ print(sys.version_info)
 DATA_DIR = '.\Glove'
 
 # url of the binary data
-DATA_URL = 'https://dl.fbaipublicfiles.com/fasttext/vectors-crawl/cc.fa.300.bin.gz'
+DATA_URL = 'https://dl.fbaipublicfiles.com/fasttext/vectors-crawl/cc.fa.300.vec.gz'
 
 
 # path to the binary train file with image data
