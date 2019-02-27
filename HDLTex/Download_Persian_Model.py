@@ -57,7 +57,7 @@ def download_and_extract():
             sys.stdout.flush()
 
         filepath, _ = urllib.urlretrieve(DATA_URL, filepath, reporthook=_progress)
-        tarfile.PAX_FORMAT
+        tarfile.DEFAULT_FORMAT = tarfile.PAX_FORMAT
         zip_ref = tarfile.open(filepath, 'r')
         zip_ref.extractall(DATA_DIR)
         zip_ref.close()
