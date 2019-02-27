@@ -31,7 +31,7 @@ print(sys.version_info)
 DATA_DIR = '.\Glove'
 
 # url of the binary data
-DATA_URL = 'http://yekupload.ir/7030a176fc167bb6/cc.fa.300.vec.zip'
+DATA_URL = 'http://s1.yekupload.ir/7030a176fc167bb6/cc.fa.300.vec.zip?download_token=909f72dfdcb23ad8fa455df55e99f56d2609eb249f1452bbf3f57340404482ed'
 
 
 # path to the binary train file with image data
