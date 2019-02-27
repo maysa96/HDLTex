@@ -14,7 +14,7 @@ from __future__ import print_function
 
 import os, sys, tarfile
 import numpy as np
-import tarfile
+import zipfile
 
 
 if sys.version_info >= (3, 0, 0):
@@ -31,7 +31,7 @@ print(sys.version_info)
 DATA_DIR = '.\Glove'
 
 # url of the binary data
-DATA_URL = 'https://dl.fbaipublicfiles.com/fasttext/vectors-crawl/cc.fa.300.vec.gz'
+DATA_URL = 'http://yekupload.ir/7030a176fc167bb6/cc.fa.300.vec.zip'
 
 
 # path to the binary train file with image data
@@ -56,9 +56,10 @@ def download_and_extract():
                                                           float(count * block_size) / float(total_size) * 100.0))
             sys.stdout.flush()
 
+
         filepath, _ = urllib.urlretrieve(DATA_URL, filepath, reporthook=_progress)
-        tarfile.DEFAULT_FORMAT = tarfile.PAX_FORMAT
-        zip_ref = tarfile.open(filepath, 'r',format=tarfile.PAX_FORMAT)
+
+        zip_ref = zipfile.ZipFile(filepath, 'r')
         zip_ref.extractall(DATA_DIR)
         zip_ref.close()
     return path
