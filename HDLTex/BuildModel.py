@@ -1,3 +1,4 @@
+#BuildModel.py
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 RMDL: Random Multimodel Deep Learning for Classification
 
@@ -14,7 +15,8 @@ from keras.models import Sequential
 from keras.models import Model
 import numpy as np
 from keras.layers import Dense, Input, Flatten
-from keras.layers import Conv1D, MaxPooling1D, Embedding, Merge, Dropout, LSTM, GRU, Bidirectional,SimpleRNN
+from keras.layers import Conv1D, MaxPooling1D, Embedding, Dropout, LSTM, GRU, Bidirectional,SimpleRNN,merge
+
 '''
 buildModel_DNN(nFeatures, nClasses, nLayers=3,Numberof_NOde=100, dropout=0.5)
 Build Deep neural networks Model for text classification
