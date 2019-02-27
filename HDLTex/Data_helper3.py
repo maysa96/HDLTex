@@ -175,7 +175,7 @@ def loadData_Tokenizer(MAX_NB_WORDS,MAX_SEQUENCE_LENGTH):
 
 def load_vectors(fname):
     fin = io.open(fname, 'r', encoding='utf-8', newline='\n', errors='ignore')
-    n, d = map(int, fin.readline().split())
+    n, d = map(float, fin.readline().split())
     data = {}
     for line in fin:
         tokens = line.rstrip().split(' ')
