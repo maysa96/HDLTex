@@ -22,7 +22,7 @@ import WOS_input as WOS
 import Download_Persian_Model as GloVe
 import numpy as np
 import os
-
+import io#*
 
 ''' Location of the dataset'''
 #path_WOS = WOS.download_and_extract()#TODO
@@ -80,9 +80,11 @@ def loadData_Tokenizer(MAX_NB_WORDS,MAX_SEQUENCE_LENGTH):
     #fnameL2 = os.path.join(path_WOS,"WebOfScience/WOS5736/YL2.txt")
     fnameL2 = os.path.join(path_WOS,"YL2.txt")
 
-    with open(fname, encoding='utf8') as f:#to do I have changed it
-        content = f.readlines()
-        content = [clean_str(x) for x in content]
+#    with open(fname, encoding='utf8') as f:#to do I have changed it
+#        content = f.readlines()
+#        content = [clean_str(x) for x in content]
+    content=load_vectors(fname=fname)
+
     content = np.array(content)
     with open(fnamek) as fk:
         contentk = fk.readlines()
@@ -154,7 +156,7 @@ def loadData_Tokenizer(MAX_NB_WORDS,MAX_SEQUENCE_LENGTH):
     '''
     For CNN and RNN, we used the text vector-space models using $100$ dimensions as described in Glove. A vector-space model is a mathematical mapping of the word space
     '''
-    Glove_path = os.path.join(GLOVE_DIR, 'glove.6B.100d.txt')
+    Glove_path = os.path.join(GLOVE_DIR, 'cc.fa.300.vec')#todo
     print(Glove_path)
     f = open(Glove_path, encoding="utf8")
     for line in f:
@@ -171,7 +173,14 @@ def loadData_Tokenizer(MAX_NB_WORDS,MAX_SEQUENCE_LENGTH):
 
 
 
-
+def load_vectors(fname):
+    fin = io.open(fname, 'r', encoding='utf-8', newline='\n', errors='ignore')
+    n, d = map(int, fin.readline().split())
+    data = {}
+    for line in fin:
+        tokens = line.rstrip().split(' ')
+        data[tokens[0]] = map(float, tokens[1:])
+    return data
 
 def loadData():
     #WOS.download_and_extract()
@@ -184,9 +193,10 @@ def loadData():
     fnameL2 = os.path.join(path_WOS,"YL2.txt")
     
     
-    with open(fname) as f:
-        content = f.readlines()
-        content = [text_cleaner(x) for x in content]
+#    with open(fname) as f:
+#       content = f.readlines()
+#        content = [text_cleaner(x) for x in content]
+    content=load_vectors(fname=fname)
     with open(fnamek) as fk:
         contentk = fk.readlines()
     contentk = [x.strip() for x in contentk]
