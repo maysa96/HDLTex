@@ -31,7 +31,7 @@ print(sys.version_info)
 DATA_DIR = '.\Glove'
 
 # url of the binary data
-DATA_URL = 'https://drive.google.com/open?id=190ryVhez-3qroyWgiHyO-0NjF5DBUSEU'
+DATA_URL = 'https://dl.fbaipublicfiles.com/fasttext/vectors-crawl/cc.fa.300.vec.gz'
 
 
 # path to the binary train file with image data
@@ -59,7 +59,7 @@ def download_and_extract():
 
         filepath, _ = urllib.urlretrieve(DATA_URL, filepath, reporthook=_progress)
 
-        zip_ref = zipfile.ZipFile(filepath, 'r')
+        zip_ref = tarfile.open(filepath, 'r')
         zip_ref.extractall(DATA_DIR)
         zip_ref.close()
     return path
